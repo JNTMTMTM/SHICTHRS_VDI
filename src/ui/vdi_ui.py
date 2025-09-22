@@ -16,16 +16,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHeaderView, QLabel,
-    QPushButton, QSizePolicy, QTableView, QWidget)
+    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
+    QWidget)
 
 class Ui_vdi(object):
     def setupUi(self, vdi):
         if not vdi.objectName():
             vdi.setObjectName(u"vdi")
         vdi.resize(800, 490)
-        self.tv_main = QTableView(vdi)
-        self.tv_main.setObjectName(u"tv_main")
-        self.tv_main.setGeometry(QRect(10, 21, 781, 401))
         self.lb_base_path = QLabel(vdi)
         self.lb_base_path.setObjectName(u"lb_base_path")
         self.lb_base_path.setGeometry(QRect(10, 0, 781, 21))
@@ -68,7 +66,7 @@ class Ui_vdi(object):
         self.pbtn_save_file.setGeometry(QRect(490, 430, 131, 23))
         self.pbtn_quit = QPushButton(vdi)
         self.pbtn_quit.setObjectName(u"pbtn_quit")
-        self.pbtn_quit.setEnabled(False)
+        self.pbtn_quit.setEnabled(True)
         self.pbtn_quit.setGeometry(QRect(490, 460, 131, 23))
         self.li_div_right = QFrame(vdi)
         self.li_div_right.setObjectName(u"li_div_right")
@@ -82,6 +80,9 @@ class Ui_vdi(object):
         self.lb_version_num = QLabel(vdi)
         self.lb_version_num.setObjectName(u"lb_version_num")
         self.lb_version_num.setGeometry(QRect(660, 460, 131, 21))
+        self.tw_main = QTableWidget(vdi)
+        self.tw_main.setObjectName(u"tw_main")
+        self.tw_main.setGeometry(QRect(10, 21, 781, 401))
 
         self.retranslateUi(vdi)
 

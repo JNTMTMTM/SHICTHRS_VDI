@@ -17,6 +17,7 @@ from PySide6.QtWidgets import QApplication , QMainWindow , QFileDialog
 from PySide6 import QtGui , QtWidgets
 from ui.vdi_ui import Ui_vdi
 from ui.vdi_slots import vdi_slots
+from utils.vdi.vdi_init_vdilist import init_vdi_list
 from data.vdi_var import vdi_var
 
 class vdi_gui(Ui_vdi , QMainWindow):
@@ -24,7 +25,9 @@ class vdi_gui(Ui_vdi , QMainWindow):
         super().__init__()
         self.setupUi(self)
         vdi_slots(self , var)
+        init_vdi_list(self , var)
         self.show()
+
     
     
     

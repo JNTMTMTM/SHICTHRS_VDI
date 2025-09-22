@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>SAC-VDI完整性校验调试工具</string>
   </property>
-  <widget class="QTableView" name="tv_main">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>21</y>
-     <width>781</width>
-     <height>401</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="lb_base_path">
    <property name="geometry">
     <rect>
@@ -227,6 +217,16 @@
    </property>
    <property name="text">
     <string>当前版本 : 等待加载</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tw_main">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>21</y>
+     <width>781</width>
+     <height>401</height>
+    </rect>
    </property>
   </widget>
  </widget>
