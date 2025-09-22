@@ -10,18 +10,11 @@
 # 算法诠释一切 质疑即是认可
 # Algorithms = rule ; Questioning = approval
 
-import sys
+import sys , os
 sys.path.append("..")
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHeaderView, QLabel, QMainWindow,
-    QPushButton, QSizePolicy, QTableView, QWidget)
+from PySide6.QtWidgets import (QApplication , QMainWindow)
+from PySide6 import QtGui , QtWidgets
 from ui.vdi_ui import Ui_vdi
 
 class vdi_gui(Ui_vdi , QMainWindow):
@@ -33,5 +26,7 @@ class vdi_gui(Ui_vdi , QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd() , 'icon' , 'logo_32x32.ico')))
+    app.setStyle(QtWidgets.QStyleFactory.create("Fusion"))
     vdi_gui = vdi_gui()
     sys.exit(app.exec())
