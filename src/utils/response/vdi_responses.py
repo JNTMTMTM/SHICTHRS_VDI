@@ -48,6 +48,12 @@ def res_pbtn_read_vdi_file(self , var) -> None:
                     self.pbtn_del_all_changes.setEnabled(True)
                     self.pbtn_save_file.setEnabled(True)
                     self.pbtn_vdi.setEnabled(True)
+
+                    
+
+
+
+
                 else:
                     var.VDI_FILEPATH : str = ''
                     QMessageBox.warning(self , "SAC_VDI" , "文件不在VDI根目录下")
