@@ -13,16 +13,20 @@
 import sys , os
 sys.path.append("..")
 
-from PySide6.QtWidgets import QApplication , QMainWindow
+from PySide6.QtWidgets import QApplication , QMainWindow , QFileDialog
 from PySide6 import QtGui , QtWidgets
 from ui.vdi_ui import Ui_vdi
+from ui.vdi_slots import vdi_slots
 from data.vdi_var import vdi_var
 
 class vdi_gui(Ui_vdi , QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        vdi_slots(self)
         self.show()
+        # folder_path = QFileDialog.getExistingDirectory(self , "Select Folder")
+    
     
     
 
@@ -42,4 +46,5 @@ if __name__ == "__main__":
     
     # 初始化主窗口
     vdi_gui = vdi_gui()
+    
     sys.exit(app.exec())
