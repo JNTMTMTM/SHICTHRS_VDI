@@ -6,3 +6,5 @@ class vdi_var():
         self.EXEPATH : str = os.getcwd()
         self.VDI_BASEPATH : str = ''
         self.VDI_FILEPATH : str = ''
+        self.VDI_ORG_FILEDATA : dict = {}
+        self.VDI_CHANGED_FILEDATA : dict = {}

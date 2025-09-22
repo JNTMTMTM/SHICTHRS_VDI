@@ -1,10 +1,10 @@
 
 import json
 import copy
+from typing import Union
+from utils.json.func_io_json_jfp_verify import verify_json_file
 
-from func_io_json_jfp_verify import verify_json_file
-
-def read_json_file(qmb , path : str) ->dict:
+def read_json_file(path : str) -> Union[dict , bool]:
     with open(path , "r" , encoding = "utf-8") as f:
         data = json.load(f)
         f.close()
@@ -14,7 +14,5 @@ def read_json_file(qmb , path : str) ->dict:
     if verify_json_file(tempdict):
         return tempdict
     else:
-        qmb.generateNormalQMessageBox('CRITICAL' , '' , 'JFP Verification Failed')
-        return {}
-        return False
+        return None
     
