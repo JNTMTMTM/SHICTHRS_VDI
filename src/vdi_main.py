@@ -25,7 +25,6 @@ class vdi_gui(Ui_vdi , QMainWindow):
         self.setupUi(self)
         vdi_slots(self , var)
         self.show()
-        # folder_path = QFileDialog.getExistingDirectory(self , "Select Folder")
     
     
     
