@@ -42,21 +42,30 @@ def res_pbtn_read_vdi_file(self , var) -> None:
 
                 # 判断是否在根目录下
                 if is_subdirectory(var.VDI_FILEPATH , var.VDI_BASEPATH):
-                    QMessageBox.information(self , "SAC_VDI" , "读取VDI校验目录文件成功")
-                    # 激活控件
-                    self.pbtn_add_file.setEnabled(True)
-                    self.pbtn_add_folder.setEnabled(True)
-                    self.pbtn_del_item.setEnabled(True)
-                    self.pbtn_del_all_changes.setEnabled(True)
-                    self.pbtn_save_file.setEnabled(True)
-                    self.pbtn_vdi.setEnabled(True)
 
-                    # 对vdi校验目录处理
-                    var.VDI_ORG_FILEDATA = deepcopy(read_json_file(var.VDI_FILEPATH))  # 读取原始文件数据
-                    var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)  # 拷贝临时修改数据
+                    # 判断是否为vdi检查目录
+                    if os.path.basename(var.VDI_FILEPATH) == 'sac_vdi.json':
+                        QMessageBox.information(self , "SAC_VDI" , "读取VDI校验目录文件成功")
+                        # 激活控件
+                        self.pbtn_add_file.setEnabled(True)
+                        self.pbtn_add_folder.setEnabled(True)
+                        self.pbtn_del_item.setEnabled(True)
+                        self.pbtn_del_all_changes.setEnabled(True)
+                        self.pbtn_save_file.setEnabled(True)
+                        self.pbtn_vdi.setEnabled(True)
 
-                    update_vdi_list(self , var)  # 更新列表
+                        # 对vdi校验目录处理
+                        var.VDI_ORG_FILEDATA = deepcopy(read_json_file(var.VDI_FILEPATH))  # 读取原始文件数据
+                        var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)  # 拷贝临时修改数据
 
+                        # 判断是否有vdi_table
+                        if 'vdi_table' in var.VDI_CHANGED_FILEDATA.keys():
+                            update_vdi_list(self , var)  # 更新列表
+                        else:
+                            QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
+
+                    else:
+                        QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
 
                 else:
                     var.VDI_FILEPATH : str = ''
