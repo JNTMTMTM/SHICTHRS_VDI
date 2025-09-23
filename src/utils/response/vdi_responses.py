@@ -2,6 +2,7 @@
 from PySide6.QtWidgets import QFileDialog , QMessageBox
 from utils.vdi.vdi_sublib_judgement_tool import is_subdirectory
 from utils.json.func_io_read_json import read_json_file
+from utils.vdi.vdi_update_vdilist import update_vdi_list
 from copy import deepcopy
 import os
 
@@ -54,7 +55,7 @@ def res_pbtn_read_vdi_file(self , var) -> None:
                     var.VDI_ORG_FILEDATA = deepcopy(read_json_file(var.VDI_FILEPATH))  # 读取原始文件数据
                     var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)  # 拷贝临时修改数据
 
-                    
+                    update_vdi_list(self , var)  # 更新列表
 
 
                 else:
