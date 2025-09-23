@@ -1,5 +1,6 @@
 
 from PySide6.QtWidgets import QTableWidgetItem , QMessageBox
+from PySide6.QtGui import QColor
 import os 
 
 def update_vdi_list(self , var):
@@ -10,9 +11,18 @@ def update_vdi_list(self , var):
             count_column : int  = 0  # 初始化列数索引
             for vdi_item in var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index].keys():
                 if vdi_item == 'path':
-                    temp_item : QTableWidgetItem = QTableWidgetItem(os.path.join(*var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item]))
+                    temp_item : QTableWidgetItem = QTableWidgetItem(os.path.join(var.VDI_BASEPATH , *var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item]))
+                elif vdi_item == 'type':
+                    temp_item : QTableWidgetItem = QTableWidgetItem(var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item])
+                    # 根据类型设置背景颜色
+                    if var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item] == 'folder':
+                        temp_item.setBackground(QColor(0 , 255 , 0 , 32))
+                        
+                    elif var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item] == 'file':
+                        temp_item.setBackground(QColor(255 , 0 , 0 , 32))
                 else:
                     temp_item : QTableWidgetItem = QTableWidgetItem(var.VDI_CHANGED_FILEDATA['vdi_table'][vdi_index][vdi_item])
+
                 self.tw_main.setItem(current_row , count_column , temp_item)
                 count_column += 1
             current_row += 1

@@ -61,12 +61,11 @@ def res_pbtn_read_vdi_file(self , var) -> None:
                         # 判断是否有vdi_table
                         if 'vdi_table' in var.VDI_CHANGED_FILEDATA.keys():
                             update_vdi_list(self , var)  # 更新列表
+
                         else:
                             QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
-
                     else:
                         QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
-
                 else:
                     var.VDI_FILEPATH : str = ''
                     QMessageBox.warning(self , "SAC_VDI" , "文件不在VDI根目录下")
