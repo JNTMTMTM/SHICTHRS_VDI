@@ -24,6 +24,8 @@ class Ui_vdi(object):
         if not vdi.objectName():
             vdi.setObjectName(u"vdi")
         vdi.resize(800, 490)
+        vdi.setMinimumSize(QSize(800, 490))
+        vdi.setMaximumSize(QSize(800, 490))
         self.lb_base_path = QLabel(vdi)
         self.lb_base_path.setObjectName(u"lb_base_path")
         self.lb_base_path.setGeometry(QRect(10, 0, 781, 21))
