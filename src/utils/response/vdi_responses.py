@@ -138,3 +138,14 @@ def res_pbtn_add_folder(self , var) -> None:
         var.VDI_CHANGED_FILEDATA = deepcopy(back_up_VDI_CHANGED_FILEDATA)  # 恢复修改数据
         update_vdi_list(self , var)
         QMessageBox.critical(self , "SAC_VDI" , f"添加文件夹至VDI校验目录失败 : {e}")
+
+# 响应 pbtn_del_all_changes 撤销所有更改
+def res_pbtn_del_all_changes(self , var) -> None:
+    try:
+        if QMessageBox.question(self , "SAC_VDI" , "是否撤销所有更改？" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+            var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)  # 恢复修改数据
+            update_vdi_list(self , var)
+            QMessageBox.information(self , "SAC_VDI" , "撤销更改成功")
+    
+    except Exception as e:
+        QMessageBox.critical(self , "SAC_VDI" , f"撤销更改失败 : {e}")
