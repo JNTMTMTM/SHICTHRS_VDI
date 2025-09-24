@@ -55,15 +55,12 @@ def res_pbtn_read_vdi_file(self , var) -> None:
                         self.pbtn_vdi.setEnabled(True)
 
                         # 对vdi校验目录处理
-                        var.VDI_ORG_FILEDATA = deepcopy(read_json_file(var.VDI_FILEPATH))  # 读取原始文件数据
+                        var.VDI_ORG_FILEDATA = deepcopy(list(read_json_file(var.VDI_FILEPATH)['vdi_table'].values()))  # 读取原始文件数据
                         var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)  # 拷贝临时修改数据
 
                         # 判断是否有vdi_table
-                        if 'vdi_table' in var.VDI_CHANGED_FILEDATA.keys():
-                            update_vdi_list(self , var)  # 更新列表
+                        update_vdi_list(self , var)  # 更新列表
 
-                        else:
-                            QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
                     else:
                         QMessageBox.warning(self , "SAC_VDI" , "文件不是VDI校验目录文件")
                 else:
@@ -80,7 +77,7 @@ def res_pbtn_read_vdi_file(self , var) -> None:
 def res_pbtn_add_file(self , var) -> None:
     temp_file_path , _ = QFileDialog.getOpenFileName(self , "添加文件至VDI校验目录" , "" , "ALL FILES (*.*)")
     if temp_file_path:  # 如果选择了文件
-        var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)
+        var.VDI_CHANGED_FILEDATA
     
     else:
         QMessageBox.warning(self , "SAC_VDI" , "未选择文件")
