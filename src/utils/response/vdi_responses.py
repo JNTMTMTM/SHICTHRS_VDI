@@ -6,7 +6,7 @@ from utils.json.func_io_write_json import write_json_file
 from utils.vdi.vdi_update_vdilist import update_vdi_list
 from utils.vdi.vdi_format_vdi_tabel import format_vdi_tabel
 from copy import deepcopy
-import os
+import os , sys
 
 
 
@@ -177,3 +177,7 @@ def res_pbtn_save_file(self , var) -> None:
     except Exception as e:
         QMessageBox.critical(self , "SAC_VDI" , f"保存VDI校验目录文件失败 : {e}")
 
+# 响应 pbtn_vdi 执行VDI校验
+def res_pbtn_quit(self , var) -> None:
+    if QMessageBox.question(self , "SAC_VDI" , "是否退出程序 , 未保存的更改将会丢失。" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+        sys.exit(0)

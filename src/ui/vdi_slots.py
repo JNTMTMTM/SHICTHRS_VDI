@@ -10,3 +10,4 @@ def vdi_slots(self , var):
     self.pbtn_del_item.clicked.connect(partial(res_pbtn_del_item , self , var))  # 删除选中项
     self.pbtn_del_all_changes.clicked.connect(partial(res_pbtn_del_all_changes , self , var))  # 删除所有修改
     self.pbtn_save_file.clicked.connect(partial(res_pbtn_save_file , self , var))  # 保存VDI校验目录文件
+    self.pbtn_quit.clicked.connect(partial(res_pbtn_quit , self , var))  # 退出程序
