@@ -1,4 +1,109 @@
 {
-    "vdi_table": {},
-    "sac_jfp": "93dbb22585571e0c832a9d6f58a51852f6fb2b20979600712db0d9ed59503774"
+    "vdi_table": {
+        "1": {
+            "name": "logs",
+            "type": "folder",
+            "path": [
+                "logs"
+            ]
+        },
+        "2": {
+            "name": "res",
+            "type": "folder",
+            "path": [
+                "res"
+            ]
+        },
+        "3": {
+            "name": "config",
+            "type": "folder",
+            "path": [
+                "res",
+                "config"
+            ]
+        },
+        "4": {
+            "name": "sac_vdi.json",
+            "type": "file",
+            "path": [
+                "res",
+                "config",
+                "sac_vdi.json"
+            ]
+        },
+        "5": {
+            "name": "icon",
+            "type": "folder",
+            "path": [
+                "res",
+                "icon"
+            ]
+        },
+        "6": {
+            "name": "logo_32x32.ico",
+            "type": "file",
+            "path": [
+                "res",
+                "icon",
+                "logo_32x32.ico"
+            ]
+        },
+        "7": {
+            "name": "statics",
+            "type": "folder",
+            "path": [
+                "res",
+                "statics"
+            ]
+        },
+        "8": {
+            "name": "sw_level_ground",
+            "type": "folder",
+            "path": [
+                "res",
+                "statics",
+                "sw_level_ground"
+            ]
+        },
+        "9": {
+            "name": "level_0",
+            "type": "folder",
+            "path": [
+                "res",
+                "statics",
+                "sw_level_ground",
+                "level_0"
+            ]
+        },
+        "10": {
+            "name": "bg_lb_level_0_sip_bg_798x501.png",
+            "type": "file",
+            "path": [
+                "res",
+                "statics",
+                "sw_level_ground",
+                "level_0",
+                "bg_lb_level_0_sip_bg_798x501.png"
+            ]
+        },
+        "11": {
+            "name": "test_1.json",
+            "type": "file",
+            "path": [
+                "res",
+                "config",
+                "test_1.json"
+            ]
+        },
+        "12": {
+            "name": "test_2.json",
+            "type": "file",
+            "path": [
+                "res",
+                "config",
+                "test_2.json"
+            ]
+        }
+    },
+    "sac_jfp": "230be1e00bda9b6630196b920860fce9981a907a4a0959436e9c894ffa17f6a3"
 }

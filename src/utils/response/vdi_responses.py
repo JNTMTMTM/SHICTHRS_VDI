@@ -23,6 +23,17 @@ def res_pbtn_read_base_path(self , var) -> None:
 
                 # 选择VDI校验目录控件
                 self.pbtn_read_vdi_file.setEnabled(True)
+
+                # 选择VDI校验目录后终止激活控件
+                self.tw_main.clearContents()  # 清空表格内容
+                self.tw_main.setRowCount(0)  # 设置列数
+                self.tw_main.resizeColumnsToContents()  # 调整列宽
+                self.pbtn_add_file.setEnabled(False)
+                self.pbtn_add_folder.setEnabled(False)
+                self.pbtn_del_item.setEnabled(False)
+                self.pbtn_del_all_changes.setEnabled(False)
+                self.pbtn_save_file.setEnabled(False)
+                self.pbtn_vdi.setEnabled(False)
                 
             else:
                 QMessageBox.warning(self , "SAC_VDI" , "文件夹不存在")
@@ -47,6 +58,9 @@ def res_pbtn_read_vdi_file(self , var) -> None:
                     if os.path.basename(var.VDI_FILEPATH) == 'sac_vdi.json':
                         QMessageBox.information(self , "SAC_VDI" , "读取VDI校验目录文件成功")
                         # 激活控件
+                        self.tw_main.clearContents()  # 清空表格内容
+                        self.tw_main.setRowCount(0)  # 设置列数
+                        self.tw_main.resizeColumnsToContents()  # 调整列宽
                         self.pbtn_add_file.setEnabled(True)
                         self.pbtn_add_folder.setEnabled(True)
                         self.pbtn_del_item.setEnabled(True)
@@ -75,11 +89,25 @@ def res_pbtn_read_vdi_file(self , var) -> None:
 
 # 响应 pbtn_add_file 添加文件
 def res_pbtn_add_file(self , var) -> None:
-    temp_file_path , _ = QFileDialog.getOpenFileName(self , "添加文件至VDI校验目录" , "" , "ALL FILES (*.*)")
-    if temp_file_path:  # 如果选择了文件
-        var.VDI_CHANGED_FILEDATA
-    
-    else:
-        QMessageBox.warning(self , "SAC_VDI" , "未选择文件")
+    try:
+        back_up_VDI_CHANGED_FILEDATA : list = deepcopy(var.VDI_CHANGED_FILEDATA)  # 备份修改数据
+        temp_file_path , _ = QFileDialog.getOpenFileName(self , "添加文件至VDI校验目录" , "" , "ALL FILES (*.*)")
+        if temp_file_path:  # 如果选择了文件
+            temp_file_path = temp_file_path.replace(var.VDI_BASEPATH , '')  # 替换根目录
+
+            var.VDI_CHANGED_FILEDATA.append({
+                "name": os.path.basename(temp_file_path),
+                "type": "file",
+                "path": temp_file_path.split('/')[1:]
+            },)
+
+            update_vdi_list(self , var)
+        else:
+            QMessageBox.warning(self , "SAC_VDI" , "未选择文件")
+
+    except Exception as e:
+        var.VDI_CHANGED_FILEDATA = deepcopy(back_up_VDI_CHANGED_FILEDATA)  # 恢复修改数据
+        update_vdi_list(self , var)
+        QMessageBox.critical(self , "SAC_VDI" , f"添加文件至VDI校验目录失败 : {e}")
 
 

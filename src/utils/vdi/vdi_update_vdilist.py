@@ -7,7 +7,7 @@ def update_vdi_list(self , var):
     try:
         self.tw_main.clearContents()  # 清空表格内容
         self.tw_main.setRowCount(0)  # 设置列数
-        self.tw_main.resizeColumnsToContents()
+        self.tw_main.resizeColumnsToContents()  # 调整列宽
         if var.VDI_CHANGED_FILEDATA:
             self.tw_main.setRowCount(len(var.VDI_CHANGED_FILEDATA))  # 设置行数
             current_row : int = 0  # 初始化行数索引
