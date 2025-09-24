@@ -76,3 +76,13 @@ def res_pbtn_read_vdi_file(self , var) -> None:
     except Exception as e:
         QMessageBox.critical(self , "SAC_VDI" , f"读取VDI校验目录文件失败 : {e}")   
 
+# 响应 pbtn_add_file 添加文件
+def res_pbtn_add_file(self , var) -> None:
+    temp_file_path , _ = QFileDialog.getOpenFileName(self , "添加文件至VDI校验目录" , "" , "ALL FILES (*.*)")
+    if temp_file_path:  # 如果选择了文件
+        var.VDI_CHANGED_FILEDATA = deepcopy(var.VDI_ORG_FILEDATA)
+    
+    else:
+        QMessageBox.warning(self , "SAC_VDI" , "未选择文件")
+
+

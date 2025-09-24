@@ -13,7 +13,7 @@
 import sys , os
 sys.path.append("..")
 
-from PySide6.QtWidgets import QApplication , QMainWindow , QFileDialog
+from PySide6.QtWidgets import QApplication , QMainWindow
 from PySide6 import QtGui , QtWidgets
 from ui.vdi_ui import Ui_vdi
 from ui.vdi_slots import vdi_slots
