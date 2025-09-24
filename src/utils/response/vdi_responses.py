@@ -139,6 +139,21 @@ def res_pbtn_add_folder(self , var) -> None:
         update_vdi_list(self , var)
         QMessageBox.critical(self , "SAC_VDI" , f"添加文件夹至VDI校验目录失败 : {e}")
 
+# 响应 pbtn_del_item 删除选中的项目
+def res_pbtn_del_item(self , var) -> None:
+    try:
+        temp_del_index : int = self.tw_main.currentRow()
+        if temp_del_index != -1:
+            if QMessageBox.question(self , "SAC_VDI" , "是否删除选中的项目" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+                del var.VDI_CHANGED_FILEDATA[temp_del_index]  # 删除选中项
+                del temp_del_index  # 删除临时变量
+                update_vdi_list(self , var)
+
+        else:
+            QMessageBox.warning(self , "SAC_VDI" , "未选择项目")
+    except Exception as e:
+        QMessageBox.critical(self , "SAC_VDI" , f"删除选中的项目失败 : {e}")
+
 # 响应 pbtn_del_all_changes 撤销所有更改
 def res_pbtn_del_all_changes(self , var) -> None:
     try:

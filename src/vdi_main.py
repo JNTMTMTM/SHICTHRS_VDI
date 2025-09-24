@@ -28,11 +28,6 @@ class vdi_gui(Ui_vdi , QMainWindow):
         init_vdi_list(self , var)
         self.show()
 
-    
-    
-    
-
-
 if __name__ == "__main__":
     # 激活全局变量
     var = vdi_var()
