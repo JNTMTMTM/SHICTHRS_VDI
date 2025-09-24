@@ -2,7 +2,9 @@
 from PySide6.QtWidgets import QFileDialog , QMessageBox
 from utils.vdi.vdi_sublib_judgement_tool import is_subdirectory
 from utils.json.func_io_read_json import read_json_file
+from utils.json.func_io_write_json import write_json_file
 from utils.vdi.vdi_update_vdilist import update_vdi_list
+from utils.vdi.vdi_format_vdi_tabel import format_vdi_tabel
 from copy import deepcopy
 import os
 
@@ -164,3 +166,14 @@ def res_pbtn_del_all_changes(self , var) -> None:
     
     except Exception as e:
         QMessageBox.critical(self , "SAC_VDI" , f"撤销更改失败 : {e}")
+
+# 响应 pbtn_save_file 保存VDI校验目录文件
+def res_pbtn_save_file(self , var) -> None:
+    try:
+        if QMessageBox.question(self , "SAC_VDI" , "是否保存VDI校验目录文件" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+            var.VDI_ORG_FILEDATA = deepcopy(var.VDI_CHANGED_FILEDATA)
+            write_json_file(format_vdi_tabel(var.VDI_CHANGED_FILEDATA) , var.VDI_FILEPATH)
+    
+    except Exception as e:
+        QMessageBox.critical(self , "SAC_VDI" , f"保存VDI校验目录文件失败 : {e}")
+
