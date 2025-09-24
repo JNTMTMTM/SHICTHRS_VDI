@@ -93,15 +93,18 @@ def res_pbtn_add_file(self , var) -> None:
         back_up_VDI_CHANGED_FILEDATA : list = deepcopy(var.VDI_CHANGED_FILEDATA)  # 备份修改数据
         temp_file_path , _ = QFileDialog.getOpenFileName(self , "添加文件至VDI校验目录" , "" , "ALL FILES (*.*)")
         if temp_file_path:  # 如果选择了文件
-            temp_file_path = temp_file_path.replace(var.VDI_BASEPATH , '')  # 替换根目录
+            if is_subdirectory(temp_file_path , var.VDI_BASEPATH):
+                temp_file_path = temp_file_path.replace(var.VDI_BASEPATH , '')  # 替换根目录
 
-            var.VDI_CHANGED_FILEDATA.append({
-                "name": os.path.basename(temp_file_path),
-                "type": "file",
-                "path": temp_file_path.split('/')[1:]
-            },)
+                var.VDI_CHANGED_FILEDATA.append({
+                    "name": os.path.basename(temp_file_path),
+                    "type": "file",
+                    "path": temp_file_path.split('/')[1:]
+                },)
 
-            update_vdi_list(self , var)
+                update_vdi_list(self , var)
+            else:
+                QMessageBox.warning(self , "SAC_VDI" , "文件不在VDI根目录下")
         else:
             QMessageBox.warning(self , "SAC_VDI" , "未选择文件")
 
@@ -116,15 +119,18 @@ def res_pbtn_add_folder(self , var) -> None:
         back_up_VDI_CHANGED_FILEDATA : list = deepcopy(var.VDI_CHANGED_FILEDATA)  # 备份修改数据
         temp_folder_path : str= QFileDialog.getExistingDirectory(self , "添加文件夹至VDI校验目录")
         if temp_folder_path:  # 如果选择了文件夹
-            temp_folder_path = temp_folder_path.replace(var.VDI_BASEPATH , '')  # 替换根目录
+            if is_subdirectory(temp_folder_path , var.VDI_BASEPATH):
+                temp_folder_path = temp_folder_path.replace(var.VDI_BASEPATH , '')  # 替换根目录
 
-            var.VDI_CHANGED_FILEDATA.append({
-                "name": os.path.basename(temp_folder_path),
-                "type": "folder",
-                "path": temp_folder_path.split('/')[1:]
-            },)
+                var.VDI_CHANGED_FILEDATA.append({
+                    "name": os.path.basename(temp_folder_path),
+                    "type": "folder",
+                    "path": temp_folder_path.split('/')[1:]
+                },)
 
-            update_vdi_list(self , var)
+                update_vdi_list(self , var)
+            else:
+                QMessageBox.warning(self , "SAC_VDI" , "文件夹不在VDI根目录下")
         else:
             QMessageBox.warning(self , "SAC_VDI" , "未选择文件夹")
 
