@@ -175,7 +175,35 @@ def res_pbtn_save_file(self , var) -> None:
     except Exception as e:
         QMessageBox.critical(self , "SAC_VDI" , f"保存VDI校验目录文件失败 : {e}")
 
-# 响应 pbtn_vdi 执行VDI校验
+# 响应 pbtn_vdi 退出程序
 def res_pbtn_quit(self , var) -> None:
     if QMessageBox.question(self , "SAC_VDI" , "是否退出程序 , 未保存的更改将会丢失。" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
         sys.exit(0)
+
+# 响应 pbtn_vdi 校验
+def res_pbtn_vdi(self , var) -> None:
+    try:
+        lost_file_list : list = []
+        lost_folder_list : list = []
+
+        for vdi_item in var.VDI_CHANGED_FILEDATA:
+            if not os.path.exists(os.path.join(var.VDI_BASEPATH , *vdi_item['path'])):
+                if vdi_item['type'] == 'file':
+                    lost_file_list.append(vdi_item)
+                else:
+                    lost_folder_list.append(vdi_item)
+        
+        if lost_file_list or lost_folder_list :
+            lost_items : list = lost_file_list + lost_folder_list
+            lost_items_str : str = ''
+
+            for lost_item in lost_items:
+                lost_items_str += f"{lost_item['name']} ({lost_item['type']})\n[+] {os.path.join(var.VDI_BASEPATH , *lost_item['path'])}\n\n"
+
+            QMessageBox.warning(self , "SAC_VDI" , f"VDI校验失败 , 以下文件或文件夹不存在 : \n{lost_items_str}")
+        else:
+            QMessageBox.information(self , "SAC_VDI" , "VDI校验成功 , 所有文件或文件夹存在。")
+    
+    except Exception as e:
+        QMessageBox.critical(self , "SAC_VDI" , f"VDI校验失败 : {e}")
+
