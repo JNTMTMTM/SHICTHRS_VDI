@@ -2,6 +2,7 @@
 *.avi
 *.pyc
 *.exe
+*.bat
 /.venv
 /__pycache__
 /logs
