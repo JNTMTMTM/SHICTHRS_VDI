@@ -1,4 +1,4 @@
-# SHICTHRS VDI 项目
+# SHICTHRS SAC_VDI
 
 ## 项目简介
 SHICTHRS VDI 是一个基于 PySide6 开发的第二代SAC反作弊系统VDI校验功能调试工具(GUI)，旨在提供高效的VDI校验目录修改的解决方案。项目立项于 2025 年 9 月 22 日，由开发团队SAC主导开发。
