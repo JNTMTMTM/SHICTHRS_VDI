@@ -8,9 +8,6 @@ from utils.vdi.vdi_format_vdi_tabel import format_vdi_tabel
 from copy import deepcopy
 import os , sys
 
-
-
-
 # 响应 pbtn_read_base_path 读取VDI根目录
 def res_pbtn_read_base_path(self , var) -> None:
     try:
@@ -173,6 +170,7 @@ def res_pbtn_save_file(self , var) -> None:
         if QMessageBox.question(self , "SAC_VDI" , "是否保存VDI校验目录文件" , QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
             var.VDI_ORG_FILEDATA = deepcopy(var.VDI_CHANGED_FILEDATA)
             write_json_file(format_vdi_tabel(var.VDI_CHANGED_FILEDATA) , var.VDI_FILEPATH)
+            QMessageBox.information(self , "SAC_VDI" , "保存VDI校验目录文件成功")
     
     except Exception as e:
         QMessageBox.critical(self , "SAC_VDI" , f"保存VDI校验目录文件失败 : {e}")
