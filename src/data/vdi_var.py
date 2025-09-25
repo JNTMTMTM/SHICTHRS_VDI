@@ -3,6 +3,7 @@ import os
 
 class vdi_var():
     def __init__(self):
+        self.VDI_VERSION : str = '0.0.1'  # VDI版本
         self.EXEPATH : str = os.getcwd()  # 获取当前执行程序的路径
         self.VDI_BASEPATH : str = ''  # VDI根目录
         self.VDI_FILEPATH : str = ''  # VDI校验项目目录路径

@@ -24,8 +24,11 @@ class vdi_gui(Ui_vdi , QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        vdi_slots(self , var)
-        init_vdi_list(self , var)
+
+        vdi_slots(self , var)  # 初始化槽函数
+        init_vdi_list(self , var)  # 初始化VDI列表
+        self.lb_version_num.setText(f"当前版本 : V{var.VDI_VERSION}")  # 设置版本号
+
         self.show()
 
 if __name__ == "__main__":
